@@ -16,3 +16,9 @@ code {
   margin-top: 5rem;
   width: 60vw;
 }
+
+@media screen and (min-width: 1024px) {
+  .search {
+    width: 40vw;
+  }
+}
