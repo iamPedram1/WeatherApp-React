@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 const InputSearch = ({ stateCityName, onChanges, onGettingData }) => {
   return (
@@ -17,6 +18,12 @@ const InputSearch = ({ stateCityName, onChanges, onGettingData }) => {
       </div>
     </div>
   );
+};
+
+InputSearch.propTypes = {
+  stateCityName: PropTypes.string,
+  onChanges: PropTypes.func,
+  onGettingData: PropTypes.func,
 };
 
 export default InputSearch;
