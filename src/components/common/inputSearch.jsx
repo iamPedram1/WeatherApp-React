@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 
-const InputSearch = () => {
+const InputSearch = ({ stateCityName, onChanges }) => {
   return (
     <div className="input-group container search">
       <input
         type="text"
+        value={stateCityName}
+        onChange={onChanges}
         className="form-control"
         placeholder="Enter The City Name"
       />

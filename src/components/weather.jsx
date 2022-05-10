@@ -9,10 +9,19 @@ class Weather extends Component {
     },
   };
 
+  handleChange = (e) => {
+    const city = this.state.city;
+    city.name = e.currentTarget.value;
+    this.setState({ city });
+  };
+
   render() {
     return (
       <React.Fragment>
-        <InputSearch />
+        <InputSearch
+          stateCityName={this.state.city.name}
+          onChanges={this.handleChange}
+        />
       </React.Fragment>
     );
   }
