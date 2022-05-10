@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-const InputSearch = ({ stateCityName, onChanges }) => {
+const InputSearch = ({ stateCityName, onChanges, onGettingData }) => {
   return (
     <div className="input-group container search">
       <input
@@ -11,7 +11,7 @@ const InputSearch = ({ stateCityName, onChanges }) => {
         placeholder="Enter The City Name"
       />
       <div className="input-group-append">
-        <button className="btn btn-danger">
+        <button onClick={onGettingData} className="btn btn-danger">
           <i className="fa fa-search"></i>
         </button>
       </div>
