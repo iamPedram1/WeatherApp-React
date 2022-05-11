@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import Weather from "./common/weather";
 import InputSearch from "./common/inputSearch";
 import http from "../services/httpService";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-class Weather extends Component {
+class App extends Component {
   state = {
     city: {
       name: "",
@@ -21,7 +22,7 @@ class Weather extends Component {
   handleGetData = async () => {
     try {
       const city = this.state.city;
-      const apiEndPoint = `http://api.weatherapi.com/v1/forecast.json?keasd=97de37820e0e4a29b9c90051221604&q=${city.name}&days=3&aqi=no&alerts=no`;
+      const apiEndPoint = `http://api.weatherapi.com/v1/forecast.json?key=97de37820e0e4a29b9c90051221604&q=${city.name}&days=3&aqi=no&alerts=no`;
       const { data } = await http.get(apiEndPoint);
       city.info = data;
       this.setState({ city });
@@ -36,17 +37,19 @@ class Weather extends Component {
   };
 
   render() {
+    const { city } = this.state;
     return (
       <React.Fragment>
         <ToastContainer />
         <InputSearch
-          stateCityName={this.state.city.name}
+          stateCityName={city.name}
           onChanges={this.handleChange}
           onGettingData={this.handleGetData}
         />
+        <Weather data={city.info} />
       </React.Fragment>
     );
   }
 }
 
-export default Weather;
+export default App;
