@@ -18,11 +18,38 @@ code {
   margin-bottom: 1rem;
   width: 60vw;
 }
+.weather {
+  border: 1px solid black;
+}
+
+span.span1 > img.icon {
+  width: 70px;
+  margin: 10px 0;
+}
+
+.span1 {
+  margin: 1rem 0rem 0.5rem 4rem;
+}
+
+.temp {
+  font-size: 3rem;
+  position: relative;
+  top: 30px;
+}
+.weather__status {
+  margin: 17px 0;
+}
 
 @media screen and (min-width: 1024px) {
   .search {
     margin-top: 3rem;
     margin-bottom: 1rem;
     width: 40vw;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  div .new {
+    margin: 10px 5.3rem;
   }
 }

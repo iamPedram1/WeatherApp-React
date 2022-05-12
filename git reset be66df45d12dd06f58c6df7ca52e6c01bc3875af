@@ -1,0 +1,17 @@
+[33mcommit be66df45d12dd06f58c6df7ca52e6c01bc3875af[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: iamPedram1 <Pedram.pps737@gmail.com>
+Date:   Thu May 12 12:16:55 2022 +0430
+
+    Refactoring the code
+
+[33mcommit a1d0ddad9b44d787af3721b81b35ecf806f87ca0[m
+Author: iamPedram1 <Pedram.pps737@gmail.com>
+Date:   Wed May 11 20:11:44 2022 +0430
+
+    making daily Weather component data Dynamic and new Reusable componennts
+
+[33mcommit 528be7aeaff7d68df9044257edc0bd98130e5fde[m
+Author: iamPedram1 <Pedram.pps737@gmail.com>
+Date:   Wed May 11 18:57:11 2022 +0430
+
+    Creating a Daily Weather component

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import Weather from "./common/weather";
 import InputSearch from "./common/inputSearch";
 import http from "../services/httpService";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Weather from "./weather";
 
 class App extends Component {
   state = {
