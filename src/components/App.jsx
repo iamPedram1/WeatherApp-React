@@ -1,16 +1,18 @@
 import React, { Component } from "react";
-import InputSearch from "./common/inputSearch";
-import http from "../services/httpService";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import NavBar from "./navBar";
+import LoadingSpinner from "./common/loadingSpinner";
+import InputSearch from "./common/inputSearch";
 import Weather from "./weather";
-
+import http from "../services/httpService";
+import "react-toastify/dist/ReactToastify.css";
 class App extends Component {
   state = {
     city: {
       name: "",
       info: [],
     },
+    loading: false,
     previousSearch: "",
     currentSearch: "",
   };
@@ -25,12 +27,20 @@ class App extends Component {
   handleGetData = async () => {
     try {
       const { city, previousSearch, currentSearch } = this.state;
+      // Running Loading Spinner
+      let { loading } = this.state;
+      loading = true;
+      this.setState({ loading });
+      //
+
       if (previousSearch !== currentSearch) {
         const apiEndPoint = `http://api.weatherapi.com/v1/forecast.json?key=97de37820e0e4a29b9c90051221604&q=${city.name}&days=3&aqi=no&alerts=no`;
         const { data } = await http.get(apiEndPoint);
+        loading = false;
         city.info = data;
         const previousSearch = currentSearch;
-        this.setState({ city, previousSearch });
+        this.setState({ city, previousSearch, loading });
+        //
       }
     } catch (e) {
       const expectedError =
@@ -38,24 +48,74 @@ class App extends Component {
       if (expectedError) {
         toast.error("Something failed while getting Data");
       }
+      const loading = false;
+      this.setState({ loading });
     }
   };
 
   render() {
-    const { city } = this.state;
-    const { handleChange, handleGetData } = this;
+    const { city, loading } = this.state;
+    console.log(city);
+    const { handleChange, handleGetData, handleChangeClass } = this;
+
     return (
       <React.Fragment>
-        <ToastContainer />
-        <InputSearch
-          stateCityName={city.name}
-          onChanges={handleChange}
-          onGettingData={handleGetData}
-        />
-        <Weather data={city.info} />
+        <NavBar />
+        {loading === true ? <LoadingSpinner /> : null}
+        <div className={handleChangeClass()}>
+          <ToastContainer />
+          <InputSearch
+            stateCityName={city.name}
+            onChanges={handleChange}
+            onGettingData={handleGetData}
+          />
+          <Weather data={city.info} />
+        </div>
       </React.Fragment>
     );
   }
+
+  handleChangeClass = () => {
+    const { info } = this.state.city;
+
+    if (Object.keys(info).length > 0) {
+      const { text } = info.current.condition;
+      const weatherDescribe = text.toLowerCase();
+
+      const isDay = info.current.is_day === 1 ? true : false,
+        isRainy = weatherDescribe.includes("rain" || "shower" || "rainy"),
+        isSnowy = weatherDescribe.includes(
+          "snow" || "snowy" || "freezing" || "freeze"
+        ),
+        isSunny = weatherDescribe.includes("sunny" || "sun" || "hot"),
+        isCloudy = weatherDescribe.includes("cloudy" || "cloud" || "overcast"),
+        isMist = weatherDescribe.includes("mist", "misty");
+
+      // document.body.classList.add('background-red');
+
+      if (isDay && isRainy) {
+        return "rainy__day";
+      }
+      if (!isDay && isRainy) {
+        return "rainy__night";
+      }
+      if (isDay && isSnowy) {
+        return "snowy__day";
+      }
+      if (!isDay && isRainy) {
+        return "snowy__night";
+      }
+      if (isCloudy) {
+        return "cloudy";
+      }
+      if (isSunny) {
+        return "sunny__day";
+      }
+      if (isMist) {
+        return "mist";
+      }
+    } else return null;
+  };
 }
 
 export default App;

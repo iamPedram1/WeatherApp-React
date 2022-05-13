@@ -42,8 +42,9 @@ span.span1 > img.icon {
 
 @media screen and (min-width: 1024px) {
   .search {
-    margin-top: 3rem;
-    margin-bottom: 1rem;
+    margin-top: 0;
+    padding-top: 3rem;
+    margin-bottom: 2rem;
     width: 40vw;
   }
 }
@@ -52,4 +53,62 @@ span.span1 > img.icon {
   div .new {
     margin: 10px 5.3rem;
   }
+}
+
+.rainy__day,
+.rainy__night,
+.sunny__day,
+.snowy_day,
+.snowy_night,
+.cloudy,
+.clear,
+.mist {
+  background-size: cover !important;
+  margin-top: -47px;
+  height: 100vh;
+  padding-top: 2rem;
+}
+
+.rainy__day {
+  background: url(./img/rainyDay.webp);
+}
+
+.rainy__night {
+  background: url(./img/rainyNight.webp);
+}
+
+.snowy_day {
+  background: url(./img/snowyDay.webp);
+}
+
+.snowy_night {
+  background: url(./img/snowyNight.webp);
+}
+
+.cloudy {
+  background: url(./img/overcast2.webp);
+}
+
+.sunny__day {
+  background: url(./img/Sunny.webp);
+}
+
+.clear {
+  background: url(./img/clear.webp);
+}
+
+.mist {
+  background: url(./img/mist.webp);
+}
+
+.spinner-border {
+  position: relative;
+  top: 44vh;
+  left: 45vw;
+  font-size: 2rem;
+}
+
+.navbar-brand {
+  margin: 0.1rem 1rem;
+  font-weight: 500;
 }

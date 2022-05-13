@@ -14,24 +14,26 @@ const DaysContainer = ({ day, data, index }) => {
       data.forecast.forecastday[index].day.condition;
 
     return (
-      <div className="col new">
-        <div className="card" style={{ width: "21rem" }}>
-          <span className="span1">
-            <img src={icon} className="card-img-top icon" />
-            <span className="temp">{Math.round(temprature)}°</span>
-          </span>
-          <div className="card-body">
-            <h1 className="card-title">{day}</h1>
-            <h4 className="card-title text-muted weather__status">
-              {weatherStatus}
-            </h4>
-            <h6 className="card-title">
-              {country} \ {region} \ {cityName}
-            </h6>
+      <React.Fragment>
+        <div className="col new">
+          <div className="card" style={{ width: "21rem" }}>
+            <span className="span1">
+              <img src={icon} className="card-img-top icon" />
+              <span className="temp">{Math.round(temprature)}°</span>
+            </span>
+            <div className="card-body">
+              <h1 className="card-title">{day}</h1>
+              <h4 className="card-title text-muted weather__status">
+                {weatherStatus}
+              </h4>
+              <h6 className="card-title">
+                {country} \ {region} \ {cityName}
+              </h6>
+            </div>
+            <ListGroup data={data} index={index} />
           </div>
-          <ListGroup data={data} index={index} />
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 };
