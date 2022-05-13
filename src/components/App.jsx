@@ -12,26 +12,25 @@ class App extends Component {
       info: [],
     },
     previousSearch: "",
-    searched: "",
+    currentSearch: "",
   };
 
   handleChange = (e) => {
     const { city } = this.state;
     city.name = e.currentTarget.value;
-    const prevCity = city.name;
-    this.setState({ city, previousSearch: prevCity });
+    const currentSearch = city.name;
+    this.setState({ city, currentSearch });
   };
 
   handleGetData = async () => {
     try {
-      const { city, previousSearch: prevCity, searched } = this.state;
-      if (prevCity !== searched) {
-        console.log("API CALLED");
+      const { city, previousSearch, currentSearch } = this.state;
+      if (previousSearch !== currentSearch) {
         const apiEndPoint = `http://api.weatherapi.com/v1/forecast.json?key=97de37820e0e4a29b9c90051221604&q=${city.name}&days=3&aqi=no&alerts=no`;
         const { data } = await http.get(apiEndPoint);
         city.info = data;
-        this.setState({ city, searched: prevCity });
-        console.log(searched);
+        const previousSearch = currentSearch;
+        this.setState({ city, previousSearch });
       }
     } catch (e) {
       const expectedError =
