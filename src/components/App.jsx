@@ -91,8 +91,6 @@ class App extends Component {
         isCloudy = weatherDescribe.includes("cloudy" || "cloud" || "overcast"),
         isMist = weatherDescribe.includes("mist", "misty");
 
-      // document.body.classList.add('background-red');
-
       if (isDay && isRainy) {
         return "rainy__day";
       }
