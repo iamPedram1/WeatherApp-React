@@ -1,5 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import ListGroup from "./listGroup";
+import PropTypes from "prop-types";
 
 const DaysContainer = ({ day, data, index }) => {
   // Check if there is data to render containers
@@ -33,6 +34,11 @@ const DaysContainer = ({ day, data, index }) => {
       </div>
     );
   }
+};
+
+DaysContainer.propTypes = {
+  day: PropTypes.string.isRequired,
+  index: PropTypes.number.isRequired,
 };
 
 export default DaysContainer;

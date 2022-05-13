@@ -53,7 +53,7 @@ class App extends Component {
           onChanges={handleChange}
           onGettingData={handleGetData}
         />
-        <Weather data={city.info} data2={city} />
+        <Weather data={city.info} />
       </React.Fragment>
     );
   }

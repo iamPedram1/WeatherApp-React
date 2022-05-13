@@ -1,9 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import DaysContainer from "./daysContainer";
 
-const ShowWeather = (props) => {
-  console.log("Show Weather", props);
-  const { data: weatherData } = props;
+const ShowWeather = ({ data: weatherData }) => {
   return (
     <React.Fragment>
       <div className="container">

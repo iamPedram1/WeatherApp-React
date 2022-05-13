@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import List from "./list";
+import PropTypes from "prop-types";
 
 const ListGroup = ({ data, index }) => {
-  console.log("ListGroup", data);
   const {
     avghumidity: humidty,
     avgtemp_c: temprature,
@@ -22,6 +22,10 @@ const ListGroup = ({ data, index }) => {
       <List text="UV Index" listData={roundIt(uv)} />
     </ul>
   );
+};
+
+ListGroup.propTypes = {
+  index: PropTypes.number.isRequired,
 };
 
 export default ListGroup;

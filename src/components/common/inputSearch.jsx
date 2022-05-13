@@ -12,7 +12,11 @@ const InputSearch = ({ stateCityName, onChanges, onGettingData }) => {
         placeholder="Enter The City Name"
       />
       <div className="input-group-append">
-        <button onClick={onGettingData} className="btn btn-danger">
+        <button
+          disabled={stateCityName.length === 0 ? true : false}
+          onClick={onGettingData}
+          className="btn btn-danger"
+        >
           <i className="fa fa-search"></i>
         </button>
       </div>
@@ -21,9 +25,9 @@ const InputSearch = ({ stateCityName, onChanges, onGettingData }) => {
 };
 
 InputSearch.propTypes = {
-  stateCityName: PropTypes.string,
-  onChanges: PropTypes.func,
-  onGettingData: PropTypes.func,
+  stateCityName: PropTypes.string.isRequired,
+  onChanges: PropTypes.func.isRequired,
+  onGettingData: PropTypes.func.isRequired,
 };
 
 export default InputSearch;
