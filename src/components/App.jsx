@@ -11,22 +11,28 @@ class App extends Component {
       name: "",
       info: [],
     },
+    previousSearch: "",
+    searched: "",
   };
 
   handleChange = (e) => {
-    const city = this.state.city;
+    const { city } = this.state;
     city.name = e.currentTarget.value;
-    this.setState({ city });
+    const prevCity = city.name;
+    this.setState({ city, previousSearch: prevCity });
   };
 
   handleGetData = async () => {
     try {
-      const city = this.state.city;
-      const apiEndPoint = `http://api.weatherapi.com/v1/forecast.json?key=97de37820e0e4a29b9c90051221604&q=${city.name}&days=3&aqi=no&alerts=no`;
-      const { data } = await http.get(apiEndPoint);
-      city.info = data;
-      this.setState({ city });
-      console.log(city.info);
+      const { city, previousSearch: prevCity, searched } = this.state;
+      if (prevCity !== searched) {
+        console.log("API CALLED");
+        const apiEndPoint = `http://api.weatherapi.com/v1/forecast.json?key=97de37820e0e4a29b9c90051221604&q=${city.name}&days=3&aqi=no&alerts=no`;
+        const { data } = await http.get(apiEndPoint);
+        city.info = data;
+        this.setState({ city, searched: prevCity });
+        console.log(searched);
+      }
     } catch (e) {
       const expectedError =
         e.response.status && e.response.status > 400 && e.response.status < 500;
@@ -38,15 +44,16 @@ class App extends Component {
 
   render() {
     const { city } = this.state;
+    const { handleChange, handleGetData } = this;
     return (
       <React.Fragment>
         <ToastContainer />
         <InputSearch
           stateCityName={city.name}
-          onChanges={this.handleChange}
-          onGettingData={this.handleGetData}
+          onChanges={handleChange}
+          onGettingData={handleGetData}
         />
-        <Weather data={city.info} />
+        <Weather data={city.info} data2={city} />
       </React.Fragment>
     );
   }
