@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import NavBar from "./navBar";
-import LoadingSpinner from "./common/loadingSpinner";
-import InputSearch from "./common/inputSearch";
-import Weather from "./weather";
-import http from "../services/httpService";
+import http from "./services/httpService";
 import "react-toastify/dist/ReactToastify.css";
+import NavBar from "./components/navBar";
+import LoadingSpinner from "./components/common/loadingSpinner";
+import InputSearch from "./components/inputSearch";
+import Weather from "./components/weather";
 class App extends Component {
   state = {
     city: {
@@ -88,9 +88,8 @@ class App extends Component {
         ),
         isSunny = weatherDescribe.includes("sunny" || "sun" || "hot"),
         isCloudy = weatherDescribe.includes("cloudy" || "cloud" || "overcast"),
-        isMist = weatherDescribe.includes(
-          "mist" || "misty" || "fog" || "foggy"
-        );
+        isMist = weatherDescribe.includes("mist" || "misty"),
+        isFoggy = weatherDescribe.includes("fog" || "foggy");
 
       if (isCloudy) {
         return "cloudy";
@@ -99,6 +98,9 @@ class App extends Component {
         return "sunny__day";
       }
       if (isMist) {
+        return "mist";
+      }
+      if (isFoggy) {
         return "mist";
       }
       if (isDay && isRainy) {
