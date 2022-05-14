@@ -34,7 +34,7 @@ class App extends Component {
       //
 
       if (previousSearch !== currentSearch) {
-        const apiEndPoint = `http://api.weatherapi.com/v1/forecast.json?key=97de37820e0e4a29b9c90051221604&q=${city.name}&days=3&aqi=no&alerts=no`;
+        const apiEndPoint = `https://api.weatherapi.com/v1/forecast.json?key=97de37820e0e4a29b9c90051221604&q=${city.name}&days=3&aqi=no&alerts=no`;
         const { data } = await http.get(apiEndPoint);
         loading = false;
         city.info = data;
