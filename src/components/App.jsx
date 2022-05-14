@@ -55,7 +55,6 @@ class App extends Component {
 
   render() {
     const { city, loading } = this.state;
-    console.log(city);
     const { handleChange, handleGetData, handleChangeClass } = this;
 
     return (
@@ -80,7 +79,7 @@ class App extends Component {
 
     if (Object.keys(info).length > 0) {
       const { text } = info.current.condition;
-      const weatherDescribe = text.toLowerCase();
+      const weatherDescribe = text.toLowerCase().trim();
 
       const isDay = info.current.is_day === 1 ? true : false,
         isRainy = weatherDescribe.includes("rain" || "shower" || "rainy"),
@@ -89,8 +88,19 @@ class App extends Component {
         ),
         isSunny = weatherDescribe.includes("sunny" || "sun" || "hot"),
         isCloudy = weatherDescribe.includes("cloudy" || "cloud" || "overcast"),
-        isMist = weatherDescribe.includes("mist", "misty");
+        isMist = weatherDescribe.includes(
+          "mist" || "misty" || "fog" || "foggy"
+        );
 
+      if (isCloudy) {
+        return "cloudy";
+      }
+      if (isSunny) {
+        return "sunny__day";
+      }
+      if (isMist) {
+        return "mist";
+      }
       if (isDay && isRainy) {
         return "rainy__day";
       }
@@ -102,15 +112,6 @@ class App extends Component {
       }
       if (!isDay && isRainy) {
         return "snowy__night";
-      }
-      if (isCloudy) {
-        return "cloudy";
-      }
-      if (isSunny) {
-        return "sunny__day";
-      }
-      if (isMist) {
-        return "mist";
       }
     } else return null;
   };

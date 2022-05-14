@@ -14,7 +14,7 @@ code {
 }
 
 .search {
-  margin-top: 2rem;
+  padding-top: 1rem;
   margin-bottom: 1rem;
   width: 60vw;
 }
@@ -63,10 +63,11 @@ span.span1 > img.icon {
 .cloudy,
 .clear,
 .mist {
-  background-size: cover !important;
-  margin-top: -47px;
-  height: 100vh;
-  padding-top: 2rem;
+  background: no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .rainy__day {
@@ -111,4 +112,20 @@ span.span1 > img.icon {
 .navbar-brand {
   margin: 0.1rem 1rem;
   font-weight: 500;
+}
+
+@media screen and (min-width: 1024px) {
+  .rainy__day,
+  .rainy__night,
+  .sunny__day,
+  .snowy_day,
+  .snowy_night,
+  .cloudy,
+  .clear,
+  .mist {
+    background-size: cover !important;
+    margin-top: -47px;
+    height: 100vh;
+    padding-top: 2rem;
+  }
 }
