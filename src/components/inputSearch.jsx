@@ -1,15 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {
-  TextField,
-  IconButton,
-  Button,
-  ButtonGroup,
-  Grid,
-} from "@mui/material";
+import { Button, ButtonGroup, Grid } from "@mui/material";
 import { Input } from "antd";
 import SearchIcon from "@mui/icons-material/Search";
-const { Search } = Input;
+
 const InputSearch = ({ stateCityName, onChanges, onGettingData }) => {
   return (
     <>

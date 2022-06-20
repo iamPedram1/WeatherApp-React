@@ -18,7 +18,11 @@ const DaysContainer = ({ day, data, index }) => {
         <div className="textCenter">
           <div className="card" style={{ width: "21rem" }}>
             <span className="span1">
-              <img src={icon} className="card-img-top icon" />
+              <img
+                src={icon}
+                alt="an icon of weather status"
+                className="card-img-top icon"
+              />
               <span className="temp">{Math.round(temprature)}°</span>
             </span>
             <div className="card-body">
