@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import NavBar from "./components/navBar";
 import InputSearch from "./components/inputSearch";
 import ShowWeather from "./components/showWeather";
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, Grid } from "@mui/material";
 
 class App extends Component {
   state = {
@@ -66,9 +66,6 @@ class App extends Component {
     return (
       <>
         <NavBar />
-        {loading === true ? (
-          <CircularProgress className="spinner-border" />
-        ) : null}
         <div>
           <ToastContainer />
           <InputSearch
@@ -76,6 +73,16 @@ class App extends Component {
             onChanges={handleChange}
             onGettingData={handleGetData}
           />
+          {loading && (
+            <Grid
+              container
+              justifyContent="center"
+              alignItems="center"
+              sx={{ margin: "3rem 0" }}
+            >
+              <CircularProgress />
+            </Grid>
+          )}
           <ShowWeather data={city.info} />
         </div>
       </>
