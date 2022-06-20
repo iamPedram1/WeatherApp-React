@@ -1,22 +1,39 @@
 import React from "react";
 import PropTypes from "prop-types";
-
+import {
+  TextField,
+  IconButton,
+  Button,
+  ButtonGroup,
+  Grid,
+} from "@mui/material";
+import { Input } from "antd";
+import SearchIcon from "@mui/icons-material/Search";
+const { Search } = Input;
 const InputSearch = ({ stateCityName, onChanges, onGettingData }) => {
   return (
-    <div className="input-group container search">
-      <input
-        type="text"
-        value={stateCityName}
-        onChange={onChanges}
-        className="form-control"
-        placeholder="Enter The City Name"
-      />
-      <div className="input-group-append">
-        <button onClick={onGettingData} className="btn btn-danger">
-          <i className="fa fa-search"></i>
-        </button>
-      </div>
-    </div>
+    <>
+      <Grid
+        container
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+        sx={{ marginBottom: "1rem" }}
+      >
+        <form onSubmit={onGettingData}>
+          <ButtonGroup sx={{ backgroundColor: "#fff", marginTop: "1rem" }}>
+            <Input
+              placeholder="Enter City Name"
+              value={stateCityName}
+              onChange={onChanges}
+            />
+            <Button type="submit" sx={{ borderRadius: "0px" }}>
+              <SearchIcon />
+            </Button>
+          </ButtonGroup>
+        </form>
+      </Grid>
+    </>
   );
 };
 

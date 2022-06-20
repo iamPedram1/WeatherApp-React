@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  background: #f3f3f3;
+  background: #e7e7e7 !important;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -49,57 +49,14 @@ span.span1 > img.icon {
   }
 }
 
-@media screen and (max-width: 720px) {
-  div .new {
-    margin: 10px 5.3rem;
+@media screen and (max-width: 1073px) {
+  div.dayAfter {
+    margin-bottom: 2rem;
   }
 }
 
-.rainy__day,
-.rainy__night,
-.sunny__day,
-.snowy_day,
-.snowy_night,
-.cloudy,
-.clear,
-.mist {
-  background: no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
-.rainy__day {
-  background: url(./img/rainyDay.webp);
-}
-
-.rainy__night {
-  background: url(./img/rainyNight.webp);
-}
-
-.snowy_day {
-  background: url(./img/snowyDay.webp);
-}
-
-.snowy_night {
-  background: url(./img/snowyNight.webp);
-}
-
-.cloudy {
-  background: url(./img/overcast2.webp);
-}
-
-.sunny__day {
-  background: url(./img/Sunny.webp);
-}
-
-.clear {
-  background: url(./img/clear.webp);
-}
-
-.mist {
-  background: url(./img/mist.webp);
+.textCenter > * {
+  text-align: center;
 }
 
 .spinner-border {
@@ -114,18 +71,7 @@ span.span1 > img.icon {
   font-weight: 500;
 }
 
-@media screen and (min-width: 1024px) {
-  .rainy__day,
-  .rainy__night,
-  .sunny__day,
-  .snowy_day,
-  .snowy_night,
-  .cloudy,
-  .clear,
-  .mist {
-    background-size: cover !important;
-    margin-top: -47px;
-    height: 100vh;
-    padding-top: 2rem;
-  }
+.website__name {
+  color: #fff;
+  font-size: 1.5rem;
 }

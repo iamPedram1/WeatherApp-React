@@ -3,9 +3,10 @@ import { ToastContainer, toast } from "react-toastify";
 import http from "./services/httpService";
 import "react-toastify/dist/ReactToastify.css";
 import NavBar from "./components/navBar";
-import LoadingSpinner from "./components/common/loadingSpinner";
 import InputSearch from "./components/inputSearch";
-import Weather from "./components/weather";
+import ShowWeather from "./components/showWeather";
+import { CircularProgress } from "@mui/material";
+
 class App extends Component {
   state = {
     city: {
@@ -24,7 +25,12 @@ class App extends Component {
     this.setState({ city, currentSearch });
   };
 
-  handleGetData = async () => {
+  handleGetData = async (e) => {
+    e.preventDefault();
+    const inputIsEmpty = this.state.city.name.length === 0;
+    //
+    if (inputIsEmpty) return;
+    //
     try {
       const { city, previousSearch, currentSearch } = this.state;
       // Running Loading Spinner
@@ -55,68 +61,26 @@ class App extends Component {
 
   render() {
     const { city, loading } = this.state;
-    const { handleChange, handleGetData, handleChangeClass } = this;
+    const { handleChange, handleGetData } = this;
 
     return (
-      <React.Fragment>
+      <>
         <NavBar />
-        {loading === true ? <LoadingSpinner /> : null}
-        <div className={handleChangeClass()}>
+        {loading === true ? (
+          <CircularProgress className="spinner-border" />
+        ) : null}
+        <div>
           <ToastContainer />
           <InputSearch
             stateCityName={city.name}
             onChanges={handleChange}
             onGettingData={handleGetData}
           />
-          <Weather data={city.info} />
+          <ShowWeather data={city.info} />
         </div>
-      </React.Fragment>
+      </>
     );
   }
-
-  handleChangeClass = () => {
-    const { info } = this.state.city;
-
-    if (Object.keys(info).length > 0) {
-      const { text } = info.current.condition;
-      const weatherDescribe = text.toLowerCase().trim();
-
-      const isDay = info.current.is_day === 1 ? true : false,
-        isRainy = weatherDescribe.includes("rain" || "shower" || "rainy"),
-        isSnowy = weatherDescribe.includes(
-          "snow" || "snowy" || "freezing" || "freeze"
-        ),
-        isSunny = weatherDescribe.includes("sunny" || "sun" || "hot"),
-        isCloudy = weatherDescribe.includes("cloudy" || "cloud" || "overcast"),
-        isMist = weatherDescribe.includes("mist" || "misty"),
-        isFoggy = weatherDescribe.includes("fog" || "foggy");
-
-      if (isCloudy) {
-        return "cloudy";
-      }
-      if (isSunny) {
-        return "sunny__day";
-      }
-      if (isMist) {
-        return "mist";
-      }
-      if (isFoggy) {
-        return "mist";
-      }
-      if (isDay && isRainy) {
-        return "rainy__day";
-      }
-      if (!isDay && isRainy) {
-        return "rainy__night";
-      }
-      if (isDay && isSnowy) {
-        return "snowy__day";
-      }
-      if (!isDay && isRainy) {
-        return "snowy__night";
-      }
-    } else return null;
-  };
 }
 
 export default App;

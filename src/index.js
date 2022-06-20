@@ -6,6 +6,7 @@ import logError from "./services/sentryErrorLog";
 import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.min.css";
 import "./index.css";
+import "antd/dist/antd.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

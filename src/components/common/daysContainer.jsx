@@ -14,8 +14,8 @@ const DaysContainer = ({ day, data, index }) => {
       data.forecast.forecastday[index].day.condition;
 
     return (
-      <React.Fragment>
-        <div className="col new">
+      <>
+        <div className="textCenter">
           <div className="card" style={{ width: "21rem" }}>
             <span className="span1">
               <img src={icon} className="card-img-top icon" />
@@ -33,7 +33,7 @@ const DaysContainer = ({ day, data, index }) => {
             <ListGroup data={data} index={index} />
           </div>
         </div>
-      </React.Fragment>
+      </>
     );
   }
 };
