@@ -9,10 +9,11 @@ const DaysContainer = ({ day, data, index }) => {
   if (thereIsData) {
     // Weather Data
     const { country, region, name: cityName } = data.location;
+    const { date } = data.forecast.forecastday[index];
     const { avgtemp_c: temprature } = data.forecast.forecastday[index].day;
     const { icon, text: weatherStatus } =
       data.forecast.forecastday[index].day.condition;
-
+    console.log(date);
     return (
       <>
         <div className="textCenter">
@@ -26,7 +27,8 @@ const DaysContainer = ({ day, data, index }) => {
               <span className="temp">{Math.round(temprature)}°</span>
             </span>
             <div className="card-body">
-              <h1 className="card-title">{day}</h1>
+              <h1 className="card-title"> {day}</h1>
+              <h6 className="card-title text-muted"> {date}</h6>
               <h4 className="card-title text-muted weather__status">
                 {weatherStatus}
               </h4>
